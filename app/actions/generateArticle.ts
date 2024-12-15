@@ -1,6 +1,6 @@
 'use server'
 
-import dataForSeoClient from '../lib/dataforseo';
+const dataForSeoClient = require('../lib/dataforseo');
 
 interface GenerateArticleParams {
   mainKeyword: string

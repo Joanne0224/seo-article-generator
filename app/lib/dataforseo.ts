@@ -1,22 +1,11 @@
-import DataForSEOAPI from 'dataforseo-client';
+const DataForSEOAPI = require('dataforseo-client');
 
-// 檢查環境變數
-const login = process.env.DATAFORSEO_LOGIN;
-const password = process.env.DATAFORSEO_PASSWORD;
-
-if (!login || !password) {
-  console.error('DataForSEO credentials missing:', {
-    hasLogin: !!login,
-    hasPassword: !!password
-  });
-  throw new Error('DataForSEO 憑證未在環境變數中設置');
-}
+// 設定 DataForSEO 憑證
+const login = 'guest@getlove.com.tw';
+const password = 'd471643183f49cc0';
 
 // 創建客戶端實例
-const client = new DataForSEOAPI({
-  login,
-  password
-});
+const client = new DataForSEOAPI.RestClient(login, password);
 
 // 測試連接
 client.serp.google.organic.taskGet({ id: "test" })
@@ -24,4 +13,4 @@ client.serp.google.organic.taskGet({ id: "test" })
     console.error('DataForSEO API 初始化測試失敗:', error);
   });
 
-export default client;
+module.exports = client;
